@@ -79,7 +79,6 @@ public class LimeLightToolsTest extends LinearOpMode {
         waitForStart();
 
 
-
         /*  *** below here shows how to access a single image and send it to dashboard *** */
         // not really needed if using the startCameraStream() shown above, but might be useful
         // for capturing images at a particular time.
