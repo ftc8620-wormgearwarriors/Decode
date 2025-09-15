@@ -1,0 +1,3 @@
+[submodule "BeepBeepSim"]
+	path = BeepBeepSim
+	url = https://github.com/ftc8620-wormgearwarriors/BeepBeepSim.git

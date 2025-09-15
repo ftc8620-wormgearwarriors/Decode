@@ -62,6 +62,7 @@ public final class MecanumDrive {
         public RevHubOrientationOnRobot.UsbFacingDirection usbFacingDirection =
                 RevHubOrientationOnRobot.UsbFacingDirection.FORWARD;
 
+
         // drive model parameters
         public double inPerTick = 1;
         public double lateralInPerTick = inPerTick;
@@ -111,6 +112,17 @@ public final class MecanumDrive {
     public final VoltageSensor voltageSensor;
 
     public final LazyImu lazyImu;
+
+    public double getRawExternalHeading() {
+        //TODO look into this later / odd imu related problem
+        if(lazyImu == null) {
+            return 0;
+        }
+        else {
+//            return imu.getRobotYawPitchRollAngles().getYaw(AngleUnit.RADIANS);
+        }
+        return 0;
+    }
 
     public final Localizer localizer;
     private final LinkedList<Pose2d> poseHistory = new LinkedList<>();
@@ -451,14 +463,14 @@ public final class MecanumDrive {
     public PoseVelocity2d updatePoseEstimate() {
         PoseVelocity2d vel = localizer.update();
         poseHistory.add(localizer.getPose());
-        
+
         while (poseHistory.size() > 100) {
             poseHistory.removeFirst();
         }
 
         estimatedPoseWriter.write(new PoseMessage(localizer.getPose()));
-        
-        
+
+
         return vel;
     }
 
